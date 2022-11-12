@@ -1,4 +1,4 @@
-Intuition
+#Intuition
 
   It is pretty easy with For loop or using contains methods but for   recursion you have to thing how to check of the 
   1.Base Case
@@ -8,14 +8,14 @@ Intuition
 
   first I wrote the the case for Absent and Leave then I wrote the Code for Base case which is when String of length 0.
 
-Complexity
+#Complexity
 
-Time complexity:
+#Time complexity:
   O(n)
-Space complexity:
+#Space complexity:
   O(1)
 
-Code
+#Code
 
 import java.lang.Object;
 class Solution {
