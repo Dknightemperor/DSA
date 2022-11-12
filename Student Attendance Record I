@@ -1,0 +1,37 @@
+Intuition
+
+  It is pretty easy with For loop or using contains methods but for   recursion you have to thing how to check of the 
+  1.Base Case
+  2. Conditions where the loop breaks
+  other recusion will automatically take care of.
+  Approach
+
+  first I wrote the the case for Absent and Leave then I wrote the Code for Base case which is when String of length 0.
+
+Complexity
+
+Time complexity:
+  O(n)
+Space complexity:
+  O(1)
+
+Code
+
+import java.lang.Object;
+class Solution {
+    public boolean checkAttendace(String s, int ab, int l){
+        if(s.length()==0)
+            return true;
+        if(s.charAt(0)=='A')
+            ab=ab+1;
+        if(s.charAt(0)=='L')
+            l=l+1;
+        else l=0;
+        if(ab==2) return false;
+        if(l==3) return false;
+        return checkAttendace(s.substring(1,s.length()),ab,l);
+    }
+    public boolean checkRecord(String s) {
+        return checkAttendace(s,0,0);
+    }
+}
