@@ -1,0 +1,10 @@
+class Solution {
+    public boolean isPowerOfFour(int n) {
+        if(n<0) return false;
+        if(n==1) return true;
+        return n % 4 ==0 && isPowerOfFour(n/4);
+    }
+}
+
+
+Note: All the power question like power of 2, power of 3 are solved in same manner
