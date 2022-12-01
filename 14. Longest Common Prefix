@@ -1,0 +1,43 @@
+Intuition
+
+First I thought to find solution in optimal way but it should use O(n*m)
+there may be better solution than the time complexity sense, but I find this ok.
+
+Approach
+
+First assing one string to whom you want to comapre whole strng list and then comapre it each character and then assign it with new string of character.
+
+Complexity
+
+Time complexity:
+O(n2)
+
+Space complexity:
+O(1)
+
+Code
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String compare = strs[0];
+        for(int i=0;i<strs.length;i++){
+            String newStr = "";
+            int strLen = 0;
+            if(compare.length()>strs[i].length())
+                strLen = strs[i].length();
+            else
+                strLen = compare.length();
+            for(int j=0;j<strLen;j++){
+                char newStrs = strs[i].charAt(j);
+                if(Character.compare(newStrs,compare.charAt(j))==0)
+                    newStr = newStr + compare.charAt(j);
+                else
+                    break;
+            }
+            System.out.println(newStr);
+            compare = newStr;
+        }
+        System.out.println(compare);
+        return compare;
+    }
+}
