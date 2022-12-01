@@ -1,0 +1,58 @@
+Intuition
+
+Read the question find the all the possible asnwer of the Solution
+then I got stuck with 900, 90, 9, 400, 40, and 4
+then I again read the question and find that it's simple to check the previous number , with current number
+
+Approach
+
+I took which section it belongs so it was there use Hashmap and Maths
+so I build it upon it
+
+Complexity
+
+Time complexity:
+O(n)
+
+Space complexity:
+O(1)
+
+Code
+
+class Solution {
+    public int romanToInt(String s) {
+        int result = 0;
+        Map<Character, Integer> roman = new HashMap<>();
+        roman.put('I',1);
+        roman.put('V',5);
+        roman.put('X',10);
+        roman.put('L',50);
+        roman.put('C',100);
+        roman.put('D',500);
+        roman.put('M',1000);
+        int cur = roman.get(s.charAt(0));
+        int pre = cur;
+        for(int i=0;i<s.length();i++){
+            cur = roman.get(s.charAt(i));
+            System.out.println(roman.get(s.charAt(i)));
+            if(cur-pre == 900)
+                result = result+800;
+            else if(cur-pre == 90)
+                result = result+80;
+            else if(cur-pre == 9)
+                result = result+8;
+            else if(cur-pre == 400) 
+                result = result+300;    
+            else if(cur-pre == 40) 
+                result = result+30;    
+            else if(cur-pre==4)
+                result = result+3;
+            else {int num = roman.get(s.charAt(i));
+
+            result = num+result;}
+            pre = cur;
+        }
+        System.out.println(result);
+        return result;
+    }
+}
