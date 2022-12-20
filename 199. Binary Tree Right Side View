@@ -1,0 +1,68 @@
+Intuition
+
+It's a Breadth First Solution as the Question shown and we have to use 1 Datastrcuture which is Queue which will help use to solve the problem
+
+Approach
+
+It's an Iterative solution
+Keep in mind for Breadth First solution
+Use of Queue will be there
+Complexity
+
+Time complexity:
+O(N)
+
+Reson being it's a Tree so as we go down It will be n/2 +n/4+ n/8 which will end up to 2n we neglect the 2 so the solution will be O(N)
+
+Space complexity:
+O(N)
+We are using Scaling Datastructure so it will be O(N)
+
+Code
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Queue<TreeNode> q = new ArrayDeque<> ();  
+        if(root == null)
+            return new ArrayList<>();
+        q.offer(root);
+        while(q.size()>0){
+            int count =0;
+            int length = q.size();
+            int rightEle = 0;
+            while(count<length){
+                TreeNode curNode = new TreeNode();
+                if(rightEle==0){
+                    TreeNode node = q.remove();
+                    curNode = node;
+                    result.add(node.val);
+                    rightEle++;
+                }else{
+                    curNode = q.remove();
+                }
+                if(curNode.right != null)
+                    q.offer(curNode.right);
+                if(curNode.left != null)
+                    q.offer(curNode.left);
+                count++;
+            }
+        }
+        return result;
+    }
+}
