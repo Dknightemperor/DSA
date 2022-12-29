@@ -1,0 +1,54 @@
+Intuition
+
+It is to check which has to be greater than what
+
+Approach
+
+Checking the smaller an greater value for particular node
+
+Complexity
+
+Time complexity:
+O(N) in worst case
+
+Space complexity:
+O(N) as it is recursive problem
+
+Code
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean dfs(TreeNode node, Double min, Double max){
+        if(Double.valueOf(node.val) <= min || Double.valueOf(node.val) >= max)
+            return false;
+        if(node.left != null){
+            if(!dfs(node.left,min, Double.valueOf(node.val)))
+                return false;
+        }
+        if(node.right != null){
+            if(!dfs(node.right, Double.valueOf(node.val), max))
+                return false;
+        }
+        return true;
+    }
+    public boolean isValidBST(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        return dfs(root,Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+    }
+}
