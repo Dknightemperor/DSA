@@ -1,0 +1,68 @@
+Intuition
+
+IT's 2d array question and can be solved with BFS approach
+
+Approach
+
+Using Breadth First Search approach
+
+Complexity
+
+Time complexity:
+O(NxM)
+
+Space complexity:
+O(N)
+
+Code
+
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        if(grid == null || grid.length == 0) return 0;
+        int[][] direction = new int[][]{
+            {-1,0},{0,1},{1,0},{0,-1}
+        };
+        int freshOranges=0;
+        int rottenOranges =0;
+        Queue<int[]> queue = new LinkedList<>();
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+            System.out.println("grid loop :"+grid[i][j]);
+                if(grid[i][j]==2){
+                    queue.add(new int[]{i,j});
+                    rottenOranges++;
+                }
+                else if(grid[i][j]==1){
+                    System.out.println("freshOranges is in loop :"+freshOranges);
+                    freshOranges++;
+                }
+            }
+        }
+        if(freshOranges==0)
+            return 0;
+        int min=0;
+        while(queue.size()>0){
+            ++min;
+            int qlen=queue.size();
+            for(int j=0;j<qlen;j++){
+                int[] curVal = queue.remove();
+                for(int i=0;i<direction.length;i++){
+                    int []curDir = direction[i];
+                    int nextRow = curVal[0] + curDir[0];
+                    int nextCol = curVal[1] + curDir[1];
+                    if(nextRow<0 || nextRow>=grid.length || nextCol <0 ||
+                    nextCol >=grid[0].length || grid[nextRow][nextCol]==2 
+                    || grid[nextRow][nextCol] ==0){
+                        continue;
+                    }
+                    grid[nextRow][nextCol]=2;
+                    queue.add(new int[]{nextRow,nextCol});
+                    freshOranges--;
+
+                }
+            }
+        }
+        System.out.println("fresh oranges :"+freshOranges);
+        return  freshOranges ==0 ? min-1 :-1;
+    }
+}
