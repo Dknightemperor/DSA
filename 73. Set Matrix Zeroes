@@ -1,0 +1,42 @@
+Intuition
+
+First thought to use Recursion but then it seems easy as whole row can be 0 then need only 2 loops to make whole row and col 0
+
+Approach
+
+Use Queue to store only those element which is 0
+
+Complexity
+
+Time complexity:
+O(N*M)
+
+Space complexity:
+O(N)
+
+Code
+
+class Solution {
+    public void bfs(int [][] matrix, int row, int col){
+        for(int i=0;i<matrix[0].length;i++){
+            matrix[row][i] = 0;
+        }
+        for(int i=0;i<matrix.length;i++){
+            matrix[i][col] = 0;
+        }
+    }
+    public void setZeroes(int[][] matrix) {
+        Queue<int[]> queue = new LinkedList<>();
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                if(matrix[i][j]==0){
+                    queue.add(new int[]{i,j});
+                }
+            }
+        }
+        while(queue.size()>0){
+            int [] curVal = queue.remove();
+            bfs(matrix,curVal[0],curVal[1]);
+        }
+    }
+}
